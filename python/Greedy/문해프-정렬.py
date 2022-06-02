@@ -35,7 +35,7 @@ def sort_card(arr):
 
 while True:
     if sorted(arr) == arr:
-        ## 리스트가 정렬되어 있을 때
+        ## 리스트가 정렬됐을 때
         break
     else:
         arr2, count = sort_card(arr)
