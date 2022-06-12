@@ -23,14 +23,10 @@ for _ in range(N):
     graph.append(temp)
 
 max_height = 0
-min_height = 100
 
 for i in range(N):
     if max(graph[i]) > max_height:
         max_height = max(graph[i])
-    
-    if min(graph[i]) < min_height:
-        min_height = min(graph[i])
 
 max_cnt = 0
 for h in range(0, max_height):
