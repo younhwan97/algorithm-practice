@@ -1,8 +1,6 @@
-N, M  = map(int, input().split())
+N, M = map(int, input().split())
 
-n, m = 3, 2
+position = [0, 0]
 
-answer = 1
-
-
+answer = 0
 
