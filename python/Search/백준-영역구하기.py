@@ -2,31 +2,48 @@ import sys
 sys.setrecursionlimit(10**6)
 
 def search(graph, x, y, M, N):
-    global answer
-
     dx = [1, -1, 0, 0]
     dy = [0, 0, 1, -1]
+
+    if graph[x][y] == 0:
+        graph[x][y] = group_nubmer
 
     for i in range(4):
         nx = x + dx[i]
         ny = y + dy[i]
 
         if (0 <= nx < M) and (0 <= ny < N):
-            if graph[nx][ny] ==  0:
+            if graph[nx][ny] == 0:
+                group[len(group) - 1] += 1
                 search(graph, nx, ny, M, N)
-                answer -= 1
 
-M, N, K = map(int, input().split())
+M, N, K = map(int, sys.stdin.readline().split())
 
-graph = [[0] * (M) for _ in range(N)]
+graph = [[0] * N for _ in range(M)]
 
+group_nubmer = 1
 for _ in range(K):
-    a, b, c, d = map(int, sys.stdin.readline().split())
+    x1, y1, x2, y2 = map(int, sys.stdin.readline().split())
 
-    for i in range(a, c):
-        for j in range(b, d):
-            graph[i][j] = 1
+    for i in range(x1, x2):
+        for j in range(y1, y2):
+            graph[j][i] = group_nubmer
+    
+    group_nubmer += 1
 
-answer = M * N
-search(graph, 0, 0, M, N)
-print(answer)
+group = list()
+group_nubmer = 0
+
+for i in range(M):
+    for j in range(N):
+        if graph[i][j] == 0:
+            group_nubmer -= 1
+            group.append(1)
+            search(graph, i, j, M, N)
+
+group.sort()
+
+print(len(group))
+
+for i in range(0, len(group)):
+    print(group[i], end=" ")
