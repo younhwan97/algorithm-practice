@@ -1,23 +1,30 @@
-def dfs(graph, v, visited, answer):
+import sys
+sys.setrecursionlimit(10**6)
+
+def search(graph, v, visited):
+    global answer
+    answer += 1
+
     visited[v] = True
     for i in graph[v]:
         if not visited[i]:
-            answer += 1
-            answer = dfs(graph, i, visited, answer)
-    return answer
+            search(graph, i, visited)
 
-n = int(input())
-k = int(input())
+N = int(input())
+K = int(input())
 
-visited = [False] * (n + 1)
+graph = [[]*N for _ in range(N + 1)]
+visited = [False] * (N + 1)
 
-graph = [[]*n for _ in range(n+1)]
+for _ in range(K):
+    a, b = map(int, sys.stdin.readline().split())
 
-for _ in range(k):
-    a, b = map(int,input().split())
     graph[a].append(b)
     graph[b].append(a)
 
-answer = 0
 
-print(dfs(graph, 1, visited, answer))
+answer = -1
+
+search(graph, 1, visited)
+
+print(answer)

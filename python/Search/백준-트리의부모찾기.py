@@ -1,18 +1,25 @@
-def dfs(graph, v, visited):
+import sys
+sys.setrecursionlimit(10**6)
+
+def search(graph, v, visited, parent):
     visited[v] = True
-    print(v, end=' ')
     for i in graph[v]:
         if not visited[i]:
-            dfs(graph, i, visited)
+            search(graph, i, visited, parent)
+            parent[i] = v
 
 N = int(input())
 
-graph = [[] * (N + 1) for _ in range(N + 1)]
+graph = [[]* N for _ in range(N + 1)]
 visited = [False] * (N + 1)
+parent = [0] * (N + 1)
 
-for _ in range(N - 1):
-    u, v = map(int, input().split())
-    graph[u].append(v)
-    graph[v].append(u)
+for _ in range(N-1):
+    a, b = map(int, sys.stdin.readline().split())
+    graph[a].append(b)
+    graph[b].append(a)
 
-dfs(graph, 7, visited) 
+search(graph, 1, visited, parent)
+
+for i in range(2, len(parent)):
+    print(parent[i])
