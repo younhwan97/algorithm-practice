@@ -16,3 +16,6 @@ for _ in range(N):
             print((pq.get())[1])
     else:
         pq.put([abs_value, value])
+
+## 알 수 있는 것
+## 2차원 리스트를 큐에 삽입할 때 첫번째 원소를 기준으로 처리
