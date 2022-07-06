@@ -32,7 +32,7 @@ while N > 0 and len(pq) != 0:
         if temp > N:
             ## 투자해야할 시간이 남은 시간을 초과할 때
             temp = N
-        
+    
         score = temp * eff + score
 
         if score > 100:
