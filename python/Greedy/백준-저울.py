@@ -5,6 +5,7 @@ arr.sort()
 sum = arr[0]
 
 if sum > 1:
+    ## 무게가 1인 추가 없을 때
     print(1)
 else:
     ## 1 1 1 1 20 30 40 -> 5

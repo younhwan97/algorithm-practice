@@ -1,5 +1,3 @@
-import sys
-
 n = int(input())
 
 arr = list()
@@ -13,7 +11,7 @@ for _ in range(n):
     for i in range(0, len(temp)):
         value[temp[i]] = 0
 
-    arr.append((len(temp), s))
+    arr.append((len(temp), s)) ## (길이, 배열)
     arr2.append(s)
 
 arr.sort(reverse=True)
@@ -43,4 +41,4 @@ for i in range(0, len(arr2)):
 
     sum += int(temp)
 
-print(sum)
+print(sum)  
