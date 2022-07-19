@@ -1,24 +1,11 @@
+from tkinter import W
+
+
 N, K = map(int, input().split())
 
-arr = [1] * N
-
-answer = 0
-
-while True:
-    if len(arr) == K:
-        break
-    else:
-        pass_validation_check = False
-
-        for i in range(0, len(arr)):
-            if i + 1 < len(arr) and arr[i] == arr[i + 1]:
-                arr[i] = arr[i] * 2
-                del arr[i + 1]
-                pass_validation_check = True
-                break
-        
-        if pass_validation_check == False:
-            arr.append(1)
-            answer += 1
-            
-print(answer)
+## N개의 물병을 K개로 만들기
+## 3, 1 -> 1 1 1 -> 2 1 -> 2 1 1 -> 2 2 -> 4  (1개)
+## 13, 2 -> 1 1 1 1 1 1 1 1 1 1 1 1 1 (1)-> 2 2 2 2 2 2 2 (2) -> 4 4 4 4 -> 8 8
+## 15, 4 -> 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 (1) -> 2 2 2 2 2 2 2 2 -> 4 4 4 4 
+## 15, 5 -> 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 -> 2 2 2 2 2 2 2 1 -> 4 4 4 4 1 1  (1개)
+## 17, 3 -> 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 -> 2 2 2 2 2 2 2 2 1 -> 4 4 4 4 1 -> 8 8 1  (0개)

@@ -1,27 +1,28 @@
 import sys
 
 N, M = map(int, input().split())
-arr = list()
 
+arr = []
 for _ in range(N):
-    weight, price = map(int, sys.stdin.readline().split())
-    arr.append([price, weight])
+    w, p = map(int, sys.stdin.readline().split())
+    arr.append((p, w))
 
 arr.sort(reverse=True)
+cal_arr = [0] * N
 
-## 가격이 제일 비싼 고기를 샀을 때
-answer = arr[0][0]
+for i in range(N):
+    sum_weight = arr[i][1]
 
-for i in range(1, len(arr)):
-    weight = 0
+    for j in range(i + 1, N):
+        if arr[j][0] < arr[i][0]:
+            sum_weight += arr[j][1]
 
-    for j in range(i + 1, len(arr)):
-        if arr[i][0] > arr[j][0]:
-            weight += arr[j][1]
+    cal_arr[i] = (arr[i][0], sum_weight)
 
-            if weight >= M:
-                break
-
-    if weight >= M:
-        answer = arr[i][0]
-print(answer)
+min_price = cal_arr[0][0]
+for i in range(len(cal_arr)):
+    if M <= cal_arr[i][1]:
+        if min_price > cal_arr[i][0]:
+            min_price = cal_arr[i][0]
+    else:
+        break

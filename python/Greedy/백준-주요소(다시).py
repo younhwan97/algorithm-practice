@@ -1,19 +1,29 @@
 N = int(input())
 length = list(map(int, input().split())) 
 price = list(map(int, input().split()))
+del price[len(price) - 1]
 
-price_length_mapping = list()
+arr = []
 
-for i in range(0, len(price) - 1):
-    price_length_mapping.append([price[i], length[i]])
+for i in range(N - 1):
+    temp = length[i:]
+    temp_sum = sum(temp)
+    arr.append((price[i], temp_sum))
 
-total_price = 0
+arr.sort()
+length_sum = sum(length)
+price_sum = 0
+print(arr)
+for i in range(len(arr)):
+    temp = arr[i]
+    price = temp[0]
+    length = temp[1]
 
-for i in range(0, len(price_length_mapping)):
-    min_price = price_length_mapping[i][0]
-    for j in range(0, i):
-        if min_price > price_length_mapping[j][0]:
-            min_price = price_length_mapping[j][0]
-    total_price += (min_price * price_length_mapping[i][1])
+    length_sum -= length
 
-print(total_price)
+    if length_sum >= 0:
+        price_sum += (price * length)
+    else:
+        length_sum += length
+        price_sum += (price * length_sum)
+        break
