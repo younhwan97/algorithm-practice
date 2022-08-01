@@ -1,4 +1,5 @@
 import sys
+from collections import deque
 sys.setrecursionlimit(10 ** 6)
 
 ## 입력 및 그래프 생성
@@ -9,50 +10,87 @@ for _ in range(N): graph.append(list(map(int, sys.stdin.readline().split())))
 
 ## 탐색 메서드 정의
 def search(x, y):
+    ## 방문 처리
+    visited[x][y] = True
+
+    ## 큐 생성
+    que = deque()
+    que.append((x, y))
+
+    ## 반복
+    while que:
+        a, b = que.popleft()
+
+        ## 탐색 방향 정의
+        dx = [1, -1, 0, 0]
+        dy = [0, 0, 1, -1]
+
+        sea_cnt = 0
+        for i in range(4):
+            nx = a + dx[i]
+            ny = b + dy[i]
+
+            if (0 <= nx < N) and (0 <= ny < M):
+                if not visited[nx][ny]:
+                    if graph[nx][ny] > 0:
+                        visited[nx][ny] = True
+                        que.append((nx, ny))
+                    else:
+                        sea_cnt += 1
+        
+        if graph[a][b] >= sea_cnt:
+            graph[a][b] -= sea_cnt
+        else:
+            graph[a][b] = 0
+
+## 빙산의 개수를 카운트 하는 탐색 메서드 정의
+def search2(x, y):
     visited[x][y] = True
 
     dx = [1, -1, 0, 0]
     dy = [0, 0, 1, -1]
 
-    sea_cnt = 0
     for i in range(4):
-        nx = dx[i] + x
-        ny = dy[i] + y
+        nx = x + dx[i]
+        ny = y + dy[i]
 
         if (0 <= nx < N) and (0 <= ny < M):
-            if graph[nx][ny] > 0:
-                if not visited[nx][ny]:
-                    search(nx, ny)
-            elif graph[nx][ny] == 0:
-                if not visited[nx][ny]:
-                    sea_cnt += 1
-
-    if graph[x][y] >= sea_cnt:
-        graph[x][y] -= sea_cnt
-    else:
-        graph[x][y] = 0
+            if not visited[nx][ny] and graph[nx][ny] > 0:
+                visited[nx][ny] = True
+                search(nx, ny)
 
 ## 탐색
+visited = [[False] * M for _ in range(N)]
 year = 0
-finish_infinite_loof = False
 while True:
-    if finish_infinite_loof:
-        print(year - 1)
-        break  
-    else:
-        year += 1
+    year += 1
 
-        cnt = 0
-        visited = [[False] * M for _ in range(N)] 
-        for i in range(N):
-            for j in range(M):
-                if graph[i][j] > 0 and not visited[i][j]:
-                    cnt += 1
-                    if cnt >= 2:
-                        break
-                    search(i, j)
-            if cnt >= 2:
-                break
+    cnt = 0 
+    for i in range(N):
+        for j in range(M):
+            if graph[i][j] > 0 and not visited[i][j]:
+                cnt += 1
+                search(i, j)
     
-        if cnt >= 2:
-            finish_infinite_loof = True
+    ## 빙산이 모두 녹았는지 확인
+    finish_loof = True
+    for i in range(N):
+        for j in range(M):
+            if graph[i][j] != 0:
+                finish_loof = False
+                break
+        if not finish_loof:
+            break
+    
+    if cnt >= 2:
+        if finish_loof:
+            print(0)
+        else:
+            print(year - 1)
+        break
+    else:
+        visited = [[False] * M for _ in range(N)]
+
+        if finish_loof:
+            print(0)
+            break
