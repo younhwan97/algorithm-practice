@@ -8,30 +8,20 @@ if max(maximum_weight) < max(box_weight):
     ## 크레인으로 옮길 수 없는 상자가 존재하는 경우
     print(-1)
 else:
-    ## 23 32 25 28 => 23, 25, 28, 32
-    ## 5 27 10 16 24 20 2 32 18 7 => 2, 5, 7, 10, 16, 18, 20, 24, 27, 32
-
+    ## 가장 처리할 수 있는 무게가 적은 크레인부터 가장 무게가 무거운 박스를 처리할 수 있는지 체크!
+    ## 박스는 내림차순
+    box_weight.sort(reverse=True)
+    ## 크레인은 오름차순
     maximum_weight.sort()
-    box_weight.sort()
-    arr = [[] for _ in range(N)]
 
-    index = 0
-
+    time = 0
     while box_weight:
-        for i in range(N):
-            if box_weight:
-                if box_weight[index] <= maximum_weight[i]:
-                    arr[i].append(box_weight[index])
-                    del box_weight[index]
-            else:
-                break
 
-        index = 0
+        for i in range(0, len(maximum_weight)):
+            for j in range(0, len(box_weight)):
+                if maximum_weight[i] >= box_weight[j]:
+                    del box_weight[j]
+                    break
+        time += 1
     
-    needed_minute = len(arr[0])
-
-    for i in range(0, len(arr)):
-        if needed_minute < len(arr[i]):
-            needed_minute = len(arr[i])
-
-    print(arr)
+    print(time)
