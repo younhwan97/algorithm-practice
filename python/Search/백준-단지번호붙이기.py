@@ -1,44 +1,45 @@
 import sys
-sys.setrecursionlimit(10**6)
+sys.setrecursionlimit(10 ** 6)
 
-def search(graph, x, y, N):
-    global group_cnt
+input = sys.stdin.readline
 
-    dx = [1, -1, 0, 0]
-    dy = [0, 0, 1, -1]
+## 입력 및 그래프 생성
+n = int(input())
 
-    if graph[x][y] > 0:
-        graph[x][y] = -1
+graph = []
+
+for _ in range(n):
+    temp = list(input().strip())
+    temp = list(map(int, temp))
+    graph.append(temp)
+
+## 탐색 메서드 정의
+dx = [1, -1, 0, 0]
+dy = [0, 0, 1, -1]
+
+def search(x, y):
+    global number
+
+    visited[x][y] = True
+    graph[x][y] = number 
 
     for i in range(4):
         nx = x + dx[i]
         ny = y + dy[i]
 
-        if (0 <= nx < N) and (0 <= ny < N):
-            if graph[nx][ny] > 0:
-                group_cnt[len(group_cnt) -1] += 1
-                search(graph, nx, ny, N)
+        if (0 <= nx < n) and (0 <= ny < n):
+            if graph[nx][ny] != 0 and not visited[nx][ny]:
+                search(nx, ny)
 
-N = int(sys.stdin.readline())
+## 탐색
+visited = [[False] * n for _ in range(n)]
 
-graph = []
+number = 1
+answer = list()
+for i in range(n):
+    for j in range(n):
+        if graph[i][j] != 0 and not visited[i][j]:
+            search(i, j)
+            number += 1
 
-for _ in range(N):
-    row = list(input())
-    row = list(map(int, row))
-    graph.append(row)
-
-group_cnt = list()
-
-for i in range(N):
-    for j in range(N):
-        if graph[i][j] > 0:
-            group_cnt.append(1)    
-            search(graph, i, j, N)
-
-print(len(group_cnt))
-
-group_cnt.sort()
-
-for i in range(0, len(group_cnt)):
-    print(group_cnt[i])
+print(graph)

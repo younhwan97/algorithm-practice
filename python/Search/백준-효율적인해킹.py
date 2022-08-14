@@ -3,48 +3,39 @@ from collections import deque
 
 input = sys.stdin.readline
 
-## 입력 및 그래프 생성
 N, M = map(int, input().split())
 
 graph = [[] for _ in range(N + 1)]
+
 for _ in range(M):
     a, b = map(int, input().split())
     graph[b].append(a)
 
-## 탐색 과정에서 사용할 큐
-que = deque()
+def search(start):
+    visited[start] = True
 
-## 탐색 메서드 정의
-def search(cnt):
+    que = deque()
+    que.append(start)
+
+    cnt = 1
     while que:
         v = que.popleft()
 
         for i in graph[v]:
-            if i not in visited:
-                cnt += 1
-                visited.add(i)
+            if not visited[i]:
                 que.append(i)
-    return cnt
+                cnt += 1
+    rel[start] = cnt
 
-## 탐색
-ans = 0
-result = []
-visited = set()
+
+rel = [0] * (N + 1)
 
 for i in range(1, N + 1):
-    visited.add(i)
-    que.append(i)
+    visited = [False] * (N + 1)
+    search(i)
 
-    cnt = search(0)
+max_value = max(rel)
 
-    if cnt > ans:
-        ans = cnt
-        result.clear()
-        result.append(i)
-    elif cnt == ans:
-        result.append(i)
-
-    visited.clear()
-
-for i in range(0, len(result)):
-    print(result[i], end=' ')
+for i in range(len(rel)):
+    if max_value == rel[i]:
+        print(i, end=' ')
