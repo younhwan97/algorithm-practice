@@ -17,7 +17,4 @@ for i in range(6, 1001):
         dp[i] = "CY"
      
 n = int(input())
-if dp[n] == "SK":
-    print("CY")
-else:
-    print("SK")
+print(dp[n])
