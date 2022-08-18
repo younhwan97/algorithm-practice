@@ -10,4 +10,4 @@ for i in range(N):
         if arr[j] < arr[i]:
             dp[i] = max(dp[i], dp[j] + 1)
 
-print(max(dp))
+print(max(dp))  
