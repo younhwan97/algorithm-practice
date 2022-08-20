@@ -1,7 +1,8 @@
 import sys
 input = sys.stdin.readline
 
-n, k = map(int, input().split())
+n = int(input())
+k = int(input())
 arr = list(map(int, input().split()))
 arr.sort()
 
