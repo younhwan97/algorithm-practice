@@ -3,7 +3,7 @@
 
 def solution(n):
     # Write code here.
-    a = [ [0] * n for _ in range(n)]
+    a = [[0] * n for _ in range(n)]
     dir = 0 # 방향
     loop = n
     r, c = 0, -1 # 좌표의 초기값
