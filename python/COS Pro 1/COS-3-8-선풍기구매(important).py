@@ -3,7 +3,7 @@ def solution(k, student):
     for s in student:
         s -= 4*k
         if s <= 0:
-            continue
+            continue ## break -> continue  / 놓치기 쉬울 듯
         answer += (s + k - 1) // k ## important / 몫을 구하기 위한 테크닉
     return answer
 

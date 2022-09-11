@@ -7,34 +7,35 @@ class Customer:
 class Shop:
     def __init__(self):
         self.reserve_list = []
-    
+         
     def reserve(self, customer):
         self.reserve_list.append(customer)
         return True
 
-class HairShop@@@:
+class HairShop(Shop):
     def __init__(self):
         super().__init__()
         
-    @@@:
-        if @@@ != 1:
+    def reserve(self, customer):
+        if customer.num_of_people != 1:
             return False
         for r in self.reserve_list:
-            if @@@:
+            if r.time == customer.time:
                 return False
         self.reserve_list.append(customer)
         return True
     
-class Restaurant@@@:
+class Restaurant(Shop):
     def __init__(self):
         super().__init__()
         
-    @@@:
-        if @@@:
+    def reserve(self, customer):
+        if customer.num_of_people < 2 or customer.num_of_people > 8:
             return False
+
         count = 0
         for r in self.reserve_list:
-            if @@@:
+            if r.time == customer.time:
                 count += 1
         if count >= 2:
             return False
