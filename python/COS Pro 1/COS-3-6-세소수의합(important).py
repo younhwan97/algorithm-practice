@@ -1,14 +1,25 @@
+import math
+
+def get_primes(n):
+
+    a = [0] * (n + 1)
+
+    for i in range(2, int(math.sqrt(n)) + 1):
+        if a[i] == 0:
+            for x in range(i + i, n + 1, i):
+                a[x] = 1 ## 값이 1이면 소수가 될 수 없는 수
+    
+    primes = []
+
+    for i in range(2, n + 1):
+        if a[i] == 0:
+            primes.append(i)
+
+    return primes
+
 def solution(n):
     answer = 0
-    primes = [2]
-    for i in range (3, n + 1, 2) : ## 2를 제외한 모든 소수는 홀수
-        is_prime = True
-        for j in range(2, i) :
-            if i % j == 0 : ## 소수의 정의: 1을 제외하고 나눠 떨어지는 수 가 없음
-                is_prime = False
-                break
-        if is_prime:
-            primes.append(i)
+    primes = get_primes(n)
 
     prime_len = len(primes)
     for i in range(0, prime_len - 2) :
