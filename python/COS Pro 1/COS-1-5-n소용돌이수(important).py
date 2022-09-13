@@ -23,7 +23,6 @@ def solution(n):
             loop -= 1
 
     answer = 0
-
     for i in range(n):
         answer += a[i][i]
 

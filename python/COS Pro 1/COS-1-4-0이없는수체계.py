@@ -7,8 +7,10 @@ def solution(num):
 
     answer += 1
     answer = str(answer)
+    ## replace(old, new, count)
+    ### count의 기본값은 -1로 전체를 의미한다.
     answer = answer.replace('0', '1')
-
+    
     return answer
 
 #The following is code to output testcase.
