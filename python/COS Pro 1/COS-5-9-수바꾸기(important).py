@@ -3,7 +3,20 @@
 
 def solution(number, target):
     #여기에 코드를 작성해주세요.
-    answer = 0
+    dp = [-1] * 10_001
+
+    dp[number] = 0
+
+    for i in range(number + 1, target + 1):
+        dp[i] = dp[i - 1] + 1
+
+        if (i + 1) % 2 == 0 and dp[(i + 1) // 2] != -1:
+            dp[i] = min(dp[i], dp[(i + 1) // 2] + 2)
+        
+        if i % 2 == 0 and dp[i // 2] != -1:
+            dp[i] = min(dp[i], dp[i // 2] + 1)
+            
+    answer = dp[target]
     return answer
 
 #아래는 테스트케이스 출력을 해보기 위한 코드입니다.
