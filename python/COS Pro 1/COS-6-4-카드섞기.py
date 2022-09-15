@@ -8,7 +8,8 @@ def solution(n, mix, k):
             if i < n//2:
                 card_a[i] = card[i]
             else:
-                card_b[i] = card[i]
+                card_b[i - n // 2] = card[i]
+                
         for i in range(0, n):
             if i % 2 == 0:
                 card[i] = card_a[i//2]

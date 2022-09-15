@@ -3,7 +3,7 @@ def solution(grid):
     for i in range(4):
         for j in range(4):
             for k in range(j + 1, 4, 2):
-                answer = max(answer, max(grid[i][j] + grid[j][k], grid[j][k] + grid[k][i]))
+                answer = max(answer, max(grid[i][j] + grid[j][k], grid[i][j] + grid[k][i]))
     return answer
 
 #아래는 테스트케이스 출력을 해보기 위한 코드입니다. 아래에는 잘못된 부분이 없으니 위의 코드만 수정하세요.

@@ -9,7 +9,7 @@ def solution(board):
             elif i != 0 and j == 0:
                 coins[i][j] = board[i][j] + coins[i-1][j]
             else:
-                coins[i][j] = board[i][j] + max(coins[i][j], coins[i-1][j-1])
+                coins[i][j] = board[i][j] + max(coins[i - 1][j], coins[i][j - 1])
     answer = coins[3][3]
     return answer
 

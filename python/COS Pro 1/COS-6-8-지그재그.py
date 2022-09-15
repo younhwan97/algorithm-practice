@@ -1,6 +1,8 @@
 INC = 0
 DEC = 1
 
+## -1 INC(0) INC(0) DEC(1) INC INC DEC INC INC
+## -1 0      2      3      4   2   3   4   2
 def func_a(arr):
     length = len(arr)
     ret = [0 for _ in range(length)]
@@ -12,6 +14,8 @@ def func_a(arr):
             ret[i] = 2
     return ret
 
+## 2, 5, 7, 3, 4, 6, 1, 8, 9
+## -1 INC INC DEC INC INC DEC INC INC
 def func_b(arr):
     global INC, DEC
     length = len(arr)
@@ -31,11 +35,10 @@ def func_c(arr):
     return ret
 
 def solution(S):
-    check = func_@@@(@@@)
-    dp = func_@@@(@@@)
-    answer = func_@@@(@@@)
+    check = func_b(S)
+    dp = func_a(check)
+    answer = func_c(dp)
     return answer
-
 
 # 아래는 테스트케이스 출력을 해보기 위한 코드입니다.
 S1 = [2, 5, 7, 3, 4, 6, 1, 8, 9]

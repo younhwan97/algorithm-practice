@@ -3,7 +3,7 @@ class Job:
 		self.salary = 0
 	
 	def get_salary(self):
-		return salary
+		return self.salary
 
 class PartTimeJob(Job):
 	def __init__(self, work_hour, pay_per_hour):

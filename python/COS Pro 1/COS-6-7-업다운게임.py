@@ -3,12 +3,12 @@ def solution(K, numbers, up_down):
     right = K
     for num, word in zip(numbers, up_down):
         if word == "UP":
-            left = @@@
+            left = num + 1 if left < num else left
         elif word == "DOWN":
-            right = @@@
+            right = num - 1 if right > num else right
         elif word == "RIGHT":
             return 1
-    return @@@
+    return right - left + 1
 
 #아래는 테스트케이스 출력을 해보기 위한 코드입니다.
 K1 = 10

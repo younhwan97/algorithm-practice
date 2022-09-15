@@ -3,7 +3,15 @@
 
 def solution(K, words):
     #여기에 코드를 작성해주세요.
-    answer = 0
+    answer = 1
+    word_cnt = 0
+    for i in range(len(words)):
+        if word_cnt + len(words[i]) <= K:
+            word_cnt += len(words[i])
+            word_cnt += 1
+        else:
+            word_cnt = len(words[i])
+            answer += 1
     return answer
 
 #아래는 테스트케이스 출력을 해보기 위한 코드입니다.

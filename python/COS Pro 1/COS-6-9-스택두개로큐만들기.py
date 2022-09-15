@@ -2,18 +2,18 @@ def func_a(stack):
     return stack.pop()
 
 def func_b(stack1, stack2):
-    while not func_@@@(@@@):
-        item = func_@@@(@@@)
+    while not func_c(stack1):
+        item = func_a(stack1)
         stack2.append(item)
 
 def func_c(stack):
     return (len(stack) == 0)
 
 def solution(stack1, stack2):
-    if func_@@@(@@@):
-        func_@@@(@@@)
+    if func_c(stack2):
+        func_b(stack1, stack2)
 
-    answer = func_@@@(@@@)
+    answer = func_a(stack2)
     return answer
 
 #아래는 테스트케이스 출력을 해보기 위한 코드입니다.
