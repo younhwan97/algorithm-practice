@@ -13,13 +13,14 @@ def merge(parent, u, v):
 	return False
 
 def solution(n, connections):
-    answer = 0
-    parent = [i for i in range(n+1)]
-    for i, connection in enumerate(connections):
-        if merge(parent, connection[0], connection[1]):
-            answer = i + 1
-            break
-    return answer
+	answer = 0
+	parent = [i for i in range(n+1)]
+	
+	for i, connection in enumerate(connections):
+		if merge(parent, connection[0], connection[1]):
+			answer = i + 1
+			break
+	return answer
 
 #아래는 테스트케이스 출력을 해보기 위한 코드입니다.
 n = 3
