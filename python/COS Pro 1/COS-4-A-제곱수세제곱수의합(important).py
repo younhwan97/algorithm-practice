@@ -1,6 +1,5 @@
 #다음과 같이 import를 사용할 수 있습니다.
 import math
-from re import L
 
 def solution(a, b):
     # 여기에 코드를 작성해주세요.

@@ -3,18 +3,6 @@
 
 def solution(phrases, second):
     # 여기에 코드를 작성해주세요.
-    answer = ''
-
-    # if (second // 14) % 2 == 0:
-    #     answer += "_"
-    #     answer += phrases[: second % 14]
-    # else:
-    #     answer += phrases[second % 14:]
-    #     answer += "_"
-    
-    # if answer == phrases + "_":
-    #     answer = phrases
-
     phrases = "______________" + phrases
 
     for _ in range(second):

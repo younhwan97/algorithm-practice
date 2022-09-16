@@ -1,10 +1,9 @@
 import math
 
 def get_primes(n):
-
     a = [0] * (n + 1)
 
-    for i in range(2, int(math.sqrt(n)) + 1):
+    for i in range(2, int(math.sqrt(n)) + 1): ## 범위 잘 기억해둘 것
         if a[i] == 0:
             for x in range(i + i, n + 1, i):
                 a[x] = 1 ## 값이 1이면 소수가 될 수 없는 수
