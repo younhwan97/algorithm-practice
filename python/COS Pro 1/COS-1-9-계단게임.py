@@ -13,7 +13,7 @@ def solution(recordA, recordB):
         elif recordA[i] == func(recordB[i]): ## 이긴경우
             cnt = cnt + 3
         else:
-            if cnt > 0:
+            if cnt > 0: ## 현재 위치가 제일 아래가 아닐때만
                 cnt = cnt - 1 ## 진 경우
     return cnt
 
