@@ -37,6 +37,7 @@ def solution(num):
         
         front_sum = func_c(front)
         back_sum = func_c(back)
+        
         if front_sum == back_sum:
             break
             
