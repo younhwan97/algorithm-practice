@@ -2,6 +2,8 @@ from abc import *
 ## 인터페이스 생성을 위해 
 
 class DeliveryStore(metaclass=ABCMeta): ## 인터페이스 생성
+    ## 여기서(함수 밖) 변수를 선언하면 static
+
     @abstractmethod
     def set_order_list(self, order_list):
         pass
