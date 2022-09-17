@@ -4,6 +4,7 @@
 result = []
 
 def pick_number(cnt, k, numbers, used_nunber):
+    ## 종료조건
     if cnt == k:
         min_value = 0
         max_value = 0
@@ -23,6 +24,7 @@ def pick_number(cnt, k, numbers, used_nunber):
 
         return
 
+    ## 재귀
     for i in range(len(numbers)):
         if numbers[i] > used_nunber[i]:
             used_nunber[i] += 1
@@ -32,14 +34,10 @@ def pick_number(cnt, k, numbers, used_nunber):
 def solution(arr, K):
     #여기에 코드를 작성해주세요.
     number = [0] * (max(arr) + 1)
-
+    used_number = [0] * (max(arr) + 1)
     for i in range(len(arr)): number[arr[i]] += 1
 
-    used_number = [0] * (max(arr) + 1)
-    for i in range(len(arr)):
-        used_number[arr[i]] += 1
-        pick_number(1, K, number, used_number)
-        used_number[arr[i]] -= 1
+    pick_number(0, K, number, used_number)
 
     return min(result)
 

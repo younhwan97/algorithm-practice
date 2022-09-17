@@ -27,6 +27,7 @@ def pick_number(cnt, K, number_cnt, used_number):
 
         if (temp[0] + temp[1] + temp[2]) % K == 0 and (temp[0], temp[1], temp[2]) not in result:
             result.append((temp[0], temp[1], temp[2]))
+            
         return
 
     for i in range(len(number_cnt)):
