@@ -3,17 +3,15 @@ import math
 def get_primes(n):
     a = [0] * (n + 1)
 
-    for i in range(2, int(math.sqrt(n)) + 1): ## 범위 잘 기억해둘 것
+    for i in range(2, int(math.sqrt(n)) + 1):
         if a[i] == 0:
             for x in range(i + i, n + 1, i):
-                a[x] = 1 ## 값이 1이면 소수가 될 수 없는 수
+                a[x] = 1
     
     primes = []
-
     for i in range(2, n + 1):
         if a[i] == 0:
             primes.append(i)
-
     return primes
 
 def solution(n):

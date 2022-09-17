@@ -1,10 +1,11 @@
 def func_a(a, b):
-	mod = a % b
+	mod = a % b 
 	while mod > 0:
 		a = b
 		b = mod
 		mod = a % b
 	return b
+## 최소공배수 = a * b / c(최대공약수)
 
 ## n의 약수의 개수를 구하는 함수
 def func_b(n):

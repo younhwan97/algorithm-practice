@@ -12,14 +12,14 @@ def solution(bishops):
     for i in range(len(bishops)):
         position = bishops[i]
 
-        x = ord(position[0]) - ord('A') + 1
-        y = int(position[1])
+        x = ord(position[0]) - ord('A')
+        y = int(position[1]) - 1
 
         for j in range(4):
             for step in range(0, 9):
                 nx = x + step * dx[j]
                 ny = y + step * dy[j]
-                if (1 <= nx <= 8) and (1 <= ny <= 8):
+                if (0 <= nx < 8) and (0 <= ny < 8):
                     a[nx][ny] = 1
                 else:
                     break
