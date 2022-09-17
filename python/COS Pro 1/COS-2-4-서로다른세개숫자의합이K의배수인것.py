@@ -1,11 +1,9 @@
-#다음과 같이 import를 사용할 수 있습니다.
-#import math
+# 반복을 이용한 방법
+from itertools import count
 
-## 반복을 이용한 방법
+
 def solution(arr, K):
-    #여기에 코드를 작성해주세요.
     answer = 0
-
     for i in range(len(arr) - 2):
         for j in range(i + 1, len(arr) - 1):
             for k in range(j + 1, len(arr)):
@@ -13,12 +11,13 @@ def solution(arr, K):
 
                 if tot % K == 0:
                     answer += 1
-
     return answer
 
-## 재귀를 이용한 방법
+# 재귀를 이용한 방법
 result = []
+
 def pick_number(cnt, K, number_cnt, used_number):
+    ## 종료 조건
     if cnt == 3:
         temp = list()
         for i in range(len(used_number)):
@@ -27,17 +26,40 @@ def pick_number(cnt, K, number_cnt, used_number):
 
         if (temp[0] + temp[1] + temp[2]) % K == 0 and (temp[0], temp[1], temp[2]) not in result:
             result.append((temp[0], temp[1], temp[2]))
-            
-        return
 
+        return
+    
+    ## 재귀
     for i in range(len(number_cnt)):
         if number_cnt[i] > used_number[i]:
             used_number[i] += 1
             pick_number(cnt + 1, K, number_cnt, used_number)
             used_number[i] -= 1
+
+## soultion 3
+def solution3(arr, K):
+    cnt = [[0] * 100_001 for _ in range(K + 1)]
+
+    for i in range(len(arr)):
+        cnt[1][arr[i]] += 1
+
+        for j in range(2, 0, -1):
+            for k in range(100_001):
+                if j == 1 and arr[i] == k:
+                    continue
+                
+                if cnt[j][k] > 0:
+                    cnt[j + 1][k + arr[i]] += cnt[j][k]
     
+    answer = 0
+    for i in range(3, 100_001, 3):
+        answer += cnt[3][i]
+
+    return answer
+
+
 #아래는 테스트케이스 출력을 해보기 위한 코드입니다.
-arr = [1, 2, 3, 4, 5]
+arr = [1, 2, 3, 4, 5, 6]
 
 number_cnt = [0] * (max(arr) + 1)
 used_number = [0] * (max(arr) + 1)
@@ -46,8 +68,6 @@ for i in range(len(arr)): number_cnt[arr[i]] += 1
 K = 3
 
 pick_number(0, K, number_cnt, used_number)
-print(len(result))
 
-# ret = solution(arr, K)
-#[실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
-# print("solution 함수의 반환 값은 ", ret, " 입니다.")
+ret = solution3(arr, K)
+print("solution 함수의 반환 값은 ", ret, " 입니다.")

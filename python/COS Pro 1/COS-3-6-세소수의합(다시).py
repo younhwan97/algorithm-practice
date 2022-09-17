@@ -17,26 +17,26 @@ def get_primes(n):
     return primes
 
 def solution(n):
-    answer = 0
-    primes = get_primes(n)
+    primes = get_primes(1000)
 
-    prime_len = len(primes)
-    for i in range(0, prime_len - 2) :
-        for j in range(i + 1, prime_len - 1) :
-            for k in range(j + 1, prime_len) :
-                if primes[i] + primes[j] + primes[k] == n:
-                    answer += 1
-    return answer
+    cnt = [[0] * 3000 for _ in range(4)]
 
+    for i in range(len(primes)):
+        cnt[1][primes[i]] = 1
+
+        for j in range(2, 0, -1):
+            for k in range(3000):
+                if j == 1 and primes[i] == k:
+                    continue
+                    
+                if cnt[j][k] > 0:
+                    cnt[j + 1][k + primes[i]] += cnt[j][k]
+
+    return cnt[3][n]
+    
 #아래는 테스트케이스 출력을 해보기 위한 코드입니다.
 n1 = 33
 ret1 = solution(n1)
 
 #[실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
 print("solution 함수의 반환 값은", ret1, "입니다.")
-
-n2 = 9
-ret2 = solution(n2)
-
-#[실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
-print("solution 함수의 반환 값은", ret2, "입니다.")

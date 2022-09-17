@@ -20,8 +20,8 @@ def solution(number, target):
     return answer
 
 #아래는 테스트케이스 출력을 해보기 위한 코드입니다.
-number1 = 5
-target1 = 9
+number1 = 6
+target1 = 11
 ret1 = solution(number1, target1)
 
 #[실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
