@@ -1,7 +1,4 @@
 # 반복을 이용한 방법
-from itertools import count
-
-
 def solution(arr, K):
     answer = 0
     for i in range(len(arr) - 2):
@@ -41,15 +38,14 @@ def solution3(arr, K):
     cnt = [[0] * 100_001 for _ in range(K + 1)]
 
     for i in range(len(arr)):
-        cnt[1][arr[i]] += 1
+        cnt[1][arr[i]] = 1
 
         for j in range(2, 0, -1):
             for k in range(100_001):
                 if j == 1 and arr[i] == k:
                     continue
                 
-                if cnt[j][k] > 0:
-                    cnt[j + 1][k + arr[i]] += cnt[j][k]
+                if cnt[j][k] > 0: cnt[j + 1][k + arr[i]] += cnt[j][k]
     
     answer = 0
     for i in range(3, 100_001, 3):
