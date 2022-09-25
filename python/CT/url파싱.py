@@ -63,6 +63,9 @@ def soultion(s):
         else:
             idx += 1
 
+    print("http:", http)
+    print("https:", https)
+
     answer = len(http) + len(https)
     return answer 
 
@@ -70,8 +73,27 @@ def soultion(s):
 ### 1. 소문자/대문자 구별 없음
 ### 2. url은 http://, https://로 시작
 ### 3. url은 com, org, net, co.kr로 끝남
-### 4. http와 com등의 끝 문자사이 문자는 3글자 이상 ex) http://naver.com은 naver
+### 4. http와 com등의 끝 문자사이 문자는 3글자 이상 ex) http://naver.com은 naver(5글자)
 ### 5. http와 com등의 끝 문자사이 문자는 알파벳만
 
-s = "https://colab.com/drive/12k3jYY3TQsK5URVxeJspSsBS1RmHfsug#scrollTo=l0gphJzsRDV7https://younhwan.com/younhwan97/bf98b53173ce464481c235a4e5d3535ahttp://navefr.com"
+print("---------------------------------------------------------------------------------------------------")
+
+s = "http://123yd.co.krhttps://colab.com/drive/12k3jYYhttp://colab.comTQsK5URhttp://ccc.co.krVxeJspSsBS1RmHfsug#scrollTo=l0gphJzsRDV7https://younhwan.com/younhwan97/bf98b53173ce464481c235a4e5d3535ahttp://navefr.com"
+print("# case 1")
 print(soultion(s))
+print("---------------------------------------------------------------------------------------------------")
+
+s = "123123"
+print("# case 2")
+print(soultion(s))
+print("---------------------------------------------------------------------------------------------------")
+
+s = "ccc.co.kr"
+print("# case 3")
+print(soultion(s))
+print("---------------------------------------------------------------------------------------------------")
+
+s = "http://http://naver.com"
+print("# case 4")
+print(soultion(s))
+print("---------------------------------------------------------------------------------------------------")

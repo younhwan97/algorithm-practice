@@ -1,81 +1,74 @@
 import sys
-from collections import deque
+sys.setrecursionlimit(10 ** 5)
+input = sys.stdin.readline
 
-## 입력 및 그래프 생성
-N, L, R = map(int, sys.stdin.readline().split())
+dx = [1, -1, 0, 0]
+dy = [0, 0, 1, -1]
 
-graph = []
-for _ in range(N): graph.append(list(map(int, sys.stdin.readline().split())))
+sum = 0
+cnt = 0
+def search(x, y, N, M, graph, visited, check, left, right):
+    global sum
+    global cnt
 
-## 탐색 메서드 정의
-def search(x, y):
-    global day
-
-    ## 방문 체크
     visited[x][y] = True
+    check[x][y] = True
 
-    ## 큐 생성
-    que = deque()
-    que.append((x, y))
+    sum += graph[x][y]
+    cnt += 1
 
-    ## 연합
-    group = []
-    group_id = []
-    group.append(graph[x][y])
-    group_id.append((x, y))
+    for i in range(4):
+        nx = x + dx[i]
+        ny = y + dy[i]
 
-    ## 반복
-    while que:
-        a, b = que.popleft()
+        if (0 <= nx < N) and (0 <= ny < M):
+            if not visited[nx][ny] and (left <= abs(graph[nx][ny] - graph[x][y]) <= right):
+                search(nx, ny, N, M, graph, visited, check, left, right)
 
-        dx = [1, -1, 0, 0]
-        dy = [0, 0, 1, -1]
+def can_search(x, y, N, M, graph, left, right):
+    for i in range(4):
+        nx = x + dx[i]
+        ny = y + dy[i]
 
-        for i in range(4):
-            nx = a + dx[i]
-            ny = b + dy[i]
+        if (0 <= nx < N) and (0 <= ny < M) and (left <= abs(graph[nx][ny] - graph[x][y]) <= right):
+            return True
+    return False
 
-            if (0 <= nx < N) and (0 <= ny < N):
-                if L <= abs(graph[a][b] - graph[nx][ny]) <= R:
-                    if not visited[nx][ny]: 
-                        visited[nx][ny] = True
-                        que.append((nx, ny))
-                        group.append(graph[nx][ny])
-                        group_id.append((nx, ny))
-    
-    if len(group) == 1 or len(group) == 0:
-        return -1
-    else:
-        day += 1
+def solution():
+    global sum
+    global cnt
+
+    n, l, r = map(int, input().split())
+    graph = []
+
+    for _ in range(n):
+        graph.append(list(map(int, input().split())))
+
+    finish_loof = False
+    day = 0
+    while True:
+        if finish_loof:
+            break
         
-        ## 연합에 속한 국가 사이 인구이동을 한다.
-        p = sum(group) // len(group)
+        day += 1
+        visited = [[False] * n for _ in range(n)]    
 
-        for i in range(0, len(group_id)):
-            a, b = group_id[i]
-            graph[a][b] = p
+        finish_loof = True
+        for i in range(n):
+            for j in range(n):
+                if not visited[i][j] and can_search(i, j, n, n, graph, l, r):
+                    check = [[False] * n for _ in range(n)]
+                    sum = 0
+                    cnt = 0
+                    finish_loof = False
 
-## 탐색
-visited = [[False] * N for _ in range(N)]
-day = 0
-finish_loof = False
+                    search(i, j, n, n, graph, visited, check, l, r)
 
-while True:
-    if finish_loof:
-        print(day)
-        break
-    else:    
-        for i in range(N):
-            for j in range(N):
-                if not visited[i][j]:
-                    result = search(i, j)
-
-                    print(graph)
-
-                    if result == -1:
-                        finish_loof = True
-                        break
-            if finish_loof:
-                break
+                    for k in range(n):
+                        for t in range(n):
+                            if check[k][t]:
+                                graph[k][t] = int(sum / cnt)
                     
-        visited = [[False] * N for _ in range(N)]
+    return day - 1
+
+print(solution())
