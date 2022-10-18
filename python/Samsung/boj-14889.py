@@ -1,53 +1,52 @@
 import sys
 input = sys.stdin.readline
 
-answer = set()
+ans = 100000000
 
-def find(n, team, red, blue):
-    if len(team) == n:
-        answer.add(team)
+def find(n, start, star_team, graph):
+    global ans
+
+    # 종료
+    if len(star_team) == n // 2:
+        ## 링크 팀 구성
+        link_team = set()
+        for i in range(n):
+            if i not in star_team:
+                link_team.add(i)
+
+        star, link = 0, 0
+
+        for i in star_team:
+            for j in star_team:
+                if i != j:
+                    star += graph[i][j]
+
+        for i in link_team:
+            for j in link_team:
+                if i != j:
+                    link += graph[i][j]
+
+        ans = min(ans, abs(star - link))
         return
 
-    for i in range(n):
-        if check[i] == 0:
-            if red + 1 <= n // 2:
-                check[i] = 1
-                find(n, team + "r")
-            elif blue + 1 <= n // 2:
-                check[i] = 2
-                find(n, team + "b")
-            check[i] = 0
-            
+    # 재귀
+    ## 중복된 팀 구성을 피하기 위해 start 매개 변수 활용
+    for i in range(start, n):
+        if i not in star_team:
+            star_team.add(i)
+            find(n, i + 1, star_team, graph)
+            star_team.remove(i)
+
 def solve():
     # 입력
     n = int(input())
     graph = []
     for _ in range(n): graph.append(list(map(int, input().split())))
 
-    check = [0] * n 
+    # 시작
+    find(n, 0, set(), graph)
 
-    find(n, "")
+    # 출력
+    print(ans)
 
-    print(answer)
-
-    # value = 1000000000
-
-    # for i in range(len(answer)):
-    #     tmp_1 = 0
-    #     tmp_2 = 0
-    #     for j in range(n):
-    #         for k in range(j + 1, n):
-    #             if answer[i][j] == answer[i][k]:
-    #                 if answer[i][j] == 1:
-    #                     tmp_1 += graph[j][k]
-    #                     tmp_1 += graph[k][j]
-    #                 else:
-    #                     tmp_2 += graph[j][k]
-    #                     tmp_2 += graph[k][j]             
-    #     value = min(value, abs(tmp_1 - tmp_2))
-
-    #     if value == 0:
-    #         break
-
-    print(value)
 solve()

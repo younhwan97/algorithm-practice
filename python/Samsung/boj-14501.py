@@ -31,6 +31,7 @@ def solve():
     # 브루트 포스
     find(arr, 0, 0)
 
+    # 출력
     print(answer)
-
+ 
 solve()
