@@ -22,7 +22,7 @@ def solve():
             ans = 'NP'
     elif  1 < len(target) < 4:
         ans = 'NP'
-    elif len(target) == 1:
+    elif len(target) == 1: 
         if target != 'P':
             ans = "NP"
 
