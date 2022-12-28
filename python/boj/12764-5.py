@@ -15,30 +15,33 @@ def solve():
     arr.sort()
 
     index = 0
-    used = [False] * (n + 1)
+    empty_num = []
+    num = 1
 
     for i in range(0, 1_000_000):
         # 종료조건
         if index >= len(arr):
             break
         
-        # 싸지방 이용을 마친 원소를 큐에서 제거
+        # 싸지방 이용을 끝낸 원소를 큐에서 제거
         if pq:
             end, n = heapq.heappop(pq)
 
             if end == i:
-                used[n] = False
+                heapq.heappush(empty_num, n)
             else:
                 heapq.heappush(pq, (end, n))
 
         if arr[index][0] == i:
-            for num in range(1, n + 1):
-                if not used[num]:
-                    break
-            
-            heapq.heappush(pq, (arr[index][1], num))
-            used[num] = True
-            count[num] += 1
+            # 비어있는 자리에 원소를 채워넣는다
+            if empty_num:
+                empty = heapq.heappop(empty_num)
+                heapq.heappush(pq, (arr[index][1], empty))
+                count[empty] += 1
+            else:
+                heapq.heappush(pq, (arr[index][1], num))
+                count[num] += 1
+                num +=1
             index += 1
         else:
             pass
