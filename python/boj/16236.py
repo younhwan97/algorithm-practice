@@ -8,7 +8,7 @@ def check(graph, distance, n, size):
 
     for i in range(n):
         for j in range(n):
-            # distance[i][j] > 0 이 없으면 자기 자신을 잡아먹는 경우 존
+            # distance[i][j] > 0 이 없으면 자기 자신을 잡아먹는 경우 존재
             if distance[i][j] > 0 and (0 < graph[i][j] < size):
                 if min_distance > distance[i][j]:
                     min_distance = distance[i][j]
