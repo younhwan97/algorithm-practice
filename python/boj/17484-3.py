@@ -2,6 +2,8 @@ import sys
 sys.setrecursionlimit(10 ** 6)
 input = sys.stdin.readline
 
+# dp로 다시 풀어볼 것
+
 dx = [1, 1, 1]
 dy = [0, -1, 1]
 ans = 601
