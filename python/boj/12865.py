@@ -8,7 +8,7 @@ def search(index, w, N, K):
     if index >= N:
         return 0
     
-    n1 = 0
+    n1 = 0 # 
     if (w + arr[index][0] <= K):
         n1 = arr[index][1] + search(index + 1, w + arr[index][0], N, K)
     n2 = search(index + 1, w, N, K)
