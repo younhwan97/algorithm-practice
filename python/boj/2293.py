@@ -3,28 +3,15 @@ input = sys.stdin.readline
 
 n, k = map(int, input().split())
 arr = list()
-dp = [-1] * 10_001
 
-for _ in range(n):
-    value = int(input())
-    arr.append(value)
-    dp[value] = 1
+dp = [0] * 10_001
+dp[0] = 1
 
-def go(value):
-    global arr
+for _ in range(n): arr.append(int(input()))
 
-    if dp[value] != -1:
-        return dp[value]
+for i in arr:
+    for j in range(1, 10_001):
+        if j >= i:
+            dp[j] += dp[j - i]
 
-    if value <= 0:
-        return 0
-
-    cnt = 0
-    for i in range(len(arr)):
-        cnt += go(value - arr[i])
-
-    dp[value] = cnt
-    return cnt
-
-go(k)
-print(dp[:20])
+print(dp[k])
