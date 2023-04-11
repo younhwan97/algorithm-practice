@@ -3,7 +3,7 @@
 <table>
     <!--------------------->
     <th width="144px">날짜</th>
-    <th width="644px">문제</th>
+    <th width="722px">문제</th>
     <tr>
         <td align="center">23.04.11</td>
         <td>
