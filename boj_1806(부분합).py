@@ -10,7 +10,6 @@ INF = 100_001
 left, right = 0, 0
 ans = INF
 current = arr[0]
-
 while left + 1 < N:
     # 값 업데이트
     if current >= S:

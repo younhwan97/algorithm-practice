@@ -1,5 +1,3 @@
-# https://velog.io/@younhwan0903/Python-boj-14942-%EA%B0%9C%EB%AF%B8#boj-14942%EA%B0%9C%EB%AF%B8
-
 import sys, heapq
 input = sys.stdin.readline
 
