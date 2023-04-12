@@ -4,6 +4,8 @@ input = sys.stdin.readline
 # 입력
 word = input().rstrip()
 target = input().rstrip()
+
+# 반복
 stk = []
 for ch in word:
     if ch != target[-1]:

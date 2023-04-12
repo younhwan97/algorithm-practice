@@ -11,7 +11,7 @@
     <tr>
         <td align="center">23.04.12</td>
         <td>
-            BOJ_2179(비슷한단어), <a href="https://velog.io/@younhwan0903/Python-BOJ9935%EB%AC%B8%EC%9E%90%EC%97%B4%ED%8F%AD%EB%B0%9C">BOJ_9935(문자열폭발)</a>
+            BOJ_2179(비슷한단어), <a href="https://velog.io/@younhwan0903/Python-BOJ9935%EB%AC%B8%EC%9E%90%EC%97%B4%ED%8F%AD%EB%B0%9C">BOJ_9935(문자열폭발)</a>, <a href="https://velog.io/@younhwan0903/Python-BOJ13913%EC%88%A8%EB%B0%94%EA%BC%AD%EC%A7%884">BOJ_13913(숨바꼭질4)</a>, BOJ_1197(최소스패닝트리)
         </td>
     </tr>
 </table>
