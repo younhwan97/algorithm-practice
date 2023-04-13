@@ -17,7 +17,7 @@
     <tr>
         <td align="center">23.04.13</td>
         <td>
-            <a href="https://velog.io/@younhwan0903/BOJ2252%EC%A4%84%EC%84%B8%EC%9A%B0%EA%B8%B0">BOJ_2252(줄세우기)</a>, BOJ_10282(해킹), 
+            <a href="https://velog.io/@younhwan0903/BOJ2252%EC%A4%84%EC%84%B8%EC%9A%B0%EA%B8%B0">BOJ_2252(줄세우기)</a>, BOJ_10282(해킹)
         </td>
     </tr>
 </table>
